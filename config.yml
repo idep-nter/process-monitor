@@ -1,0 +1,6 @@
+main:
+  refresh : 10 # refresh rate in seconds
+  procNum : 0 # number of processes to save, 0=all
+
+report:
+  topNum : 5 # number of processes with the highest values to be listed

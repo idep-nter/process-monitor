@@ -1,0 +1,9 @@
+python-daemon
+yaml
+schedule
+subprocess
+datetime
+re
+statistics
+numpy
+textwrap
