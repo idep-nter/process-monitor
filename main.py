@@ -14,7 +14,10 @@ def main():
         cfg = yaml.safe_load(ymlf)
     refresh = cfg["main"]["refresh"]
     procNum = cfg["main"]["procNum"]
-    schedule.every(refresh).seconds.do(saveLog(procNum))
+    try:
+        schedule.every(refresh).seconds.do(saveLog(procNum))
+    except FileNotFoundError:
+        print("Please install iotop command on your system.")
 
 
 def saveLog(num):
