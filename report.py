@@ -87,8 +87,8 @@ def makePsDict(psList, psHeader):
 def makeIoDict(ioList, ioHeader):
     """
     Returns a dictionary of processes with i/o usage from iotop.
-    Also modifies each entry by removing unwanted words to make split work in a
-    right way.
+    Also modifies each entry by removing unwanted words to make split work in
+    the right way.
     """
     newIoList = []
     for entry in ioList:
@@ -327,7 +327,7 @@ def hPerIo(num, d):
 
 def pprintDict(d):
     """
-    "Pretty prints" each process with statistics in a formatted way.
+    "Pretty prints" each process with statistics in the formatted way.
     """
     for proc in d.keys():
         if len(proc) > 80:
@@ -348,7 +348,7 @@ def pprintDict(d):
 
 def pprintTop(topProc):
     """
-    "Pretty prints" top process for each statistic in a formatted way.
+    "Pretty prints" top process for each statistic in the formatted way.
     """
     for proc in topProc:
         if len(proc[0]) > 80:
