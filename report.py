@@ -403,22 +403,28 @@ def printRes(num, psD, ioD):
 
 
 def main():
-    with open("config.yml", "r") as ymlf:
-        cfg = yaml.safe_load(ymlf)
-    with open("output.txt", "r") as out:
-        log = out.readlines()
-    topNum = cfg["report"]["topNum"]
-    fmt = "%d/%m/%Y, %H:%M:%S"
-    reg = re.compile(r"\d+/\d+/\d+, \d+:\d+:\d+")
-    start, stop = getPeriod(fmt, reg)
-    psHeader, ioHeader = getHeaders()
-    psList, ioList = makeList(log, start, stop, fmt, reg)
-    psDict = makePsDict(psList, psHeader)
-    ioDict = makeIoDict(ioList, ioHeader)
-    fPsDict = makeFinalDict(psDict)
-    fIoDict = makeFinalDict(ioDict)
-    printRes(topNum, fPsDict, fIoDict)
-
+    try:
+        with open("config.yml", "r") as ymlf:
+            cfg = yaml.safe_load(ymlf)
+        with open("output.txt", "r") as out:
+            log = out.readlines()
+        topNum = cfg["report"]["topNum"]
+        fmt = "%d/%m/%Y, %H:%M:%S"
+        reg = re.compile(r"\d+/\d+/\d+, \d+:\d+:\d+")
+        start, stop = getPeriod(fmt, reg)
+        psHeader, ioHeader = getHeaders()
+        psList, ioList = makeList(log, start, stop, fmt, reg)
+        if not psList:
+            raise ValueError
+        psDict = makePsDict(psList, psHeader)
+        ioDict = makeIoDict(ioList, ioHeader)
+        fPsDict = makeFinalDict(psDict)
+        fIoDict = makeFinalDict(ioDict)
+        printRes(topNum, fPsDict, fIoDict)
+    except FileNotFoundError:
+        print("No file named output.txt founded.")
+    except ValueError:
+        print("No data founded.")
 
 if __name__ == "__main__":
     main()
