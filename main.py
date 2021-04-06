@@ -7,8 +7,8 @@ from datetime import datetime
 
 def main():
     """
-    The main function reads the config and every x seconds saves the log into a
-    file.
+    The main function reads the config and every x seconds saves the log into
+    the file.
     """
     with open("config.yml", "r") as ymlf:
         cfg = yaml.safe_load(ymlf)
@@ -35,8 +35,9 @@ def saveLog(num):
 
 def psCommand(sortBy, num, output):
     """
-    Uses subprocess to proceed ps aux command with a sort by a given parameter
-    and checks the config file for a number of processes to be outputted.
+    Uses the subprocess to proceed the ps aux command with the sort by a
+    given parameter and checks the config file for a number of processes to be
+    outputted.
     """
     if num > 0:
         p1 = subprocess.Popen(["ps", "aux"],
@@ -55,7 +56,8 @@ def psCommand(sortBy, num, output):
 
 def ioCommand(num, output):
     """
-    Same as psCommand just with iotop to list processes with the highest I/O.
+    Same as the psCommand just with the iotop to list processes with the
+    highest I/O.
     """
     if num > 0:
         p1 = subprocess.Popen(["iotop", "-b", "-qqq", "-P", "-n", "1"],

@@ -30,7 +30,8 @@ def getPeriod(fmt, reg):
 
 def makeList(log, start, stop, fmt, reg):
     """
-    Returns two lists from ps aux and iotop logs within the given time period.
+    Returns two lists from ps aux and iotop logs within the given time
+    period.
     """
     psList = []
     ioList = []
@@ -58,7 +59,7 @@ def makeList(log, start, stop, fmt, reg):
 
 def getHeaders():
     """
-    Returns headers for both ps aux and iotop commands.
+    Returns the headers for both ps aux and iotop commands.
     """
     psHeader = ["USER", "PID", "%CPU", "%MEM", "VSZ", "RSS", "TTY", "STAT",
                 "START", "TIME", "COMMAND"]
@@ -69,8 +70,8 @@ def getHeaders():
 
 def makePsDict(psList, psHeader):
     """
-    Returns a dictionary of processes with the cpu and mem usage from ps aux.
-    It gets the wanted values by splitting the data by the given header.
+    Returns a dictionary of processes with a cpu and mem usage from the ps aux.
+    It gets the wanted values by splitting the data by a given header.
     """
     psData = list(map(lambda s: s.strip().split(None, len(psHeader) - 1),
                       psList))
@@ -86,9 +87,9 @@ def makePsDict(psList, psHeader):
 
 def makeIoDict(ioList, ioHeader):
     """
-    Returns a dictionary of processes with i/o usage from iotop.
-    Also modifies each entry by removing unwanted words to make split work in
-    the right way.
+    Returns a dictionary of processes with i/o usage from the iotop.
+    Also modifies each entry by removing unwanted words to make the split work
+    in the right way.
     """
     newIoList = []
     for entry in ioList:
@@ -327,7 +328,7 @@ def hPerIo(num, d):
 
 def pprintDict(d):
     """
-    "Pretty prints" each process with statistics in the formatted way.
+    "Pretty prints" each process with statistics in formatted way.
     """
     for proc in d.keys():
         if len(proc) > 80:
@@ -348,7 +349,7 @@ def pprintDict(d):
 
 def pprintTop(topProc):
     """
-    "Pretty prints" top process for each statistic in the formatted way.
+    "Pretty prints" top process for each statistic in formatted way.
     """
     for proc in topProc:
         if len(proc[0]) > 80:
